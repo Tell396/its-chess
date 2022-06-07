@@ -41,13 +41,14 @@ body {
 }
 
 .selected {
-  background-color: brown;
+  transition: all 200ms ease;
+  background-color: #b46558;
 }
 .available {
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background-color: #22c022;
+  background-color: #3ec73e;
 }
 
 .lost {

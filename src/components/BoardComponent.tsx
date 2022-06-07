@@ -9,10 +9,30 @@ interface BoardProps {
 }
 
 const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
-  const [selectedCell, setSelectedCell] = useState<Cell | null>(null)
+  const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
   function click(cell: Cell) {
-    setSelectedCell(cell)
+    if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
+      selectedCell.moveFigure(cell);
+      setSelectedCell(null);
+      updateBoard();
+    } else {
+      setSelectedCell(cell);
+    }
+  }
+
+  useEffect(() => {
+    highlightCells();
+  }, [selectedCell]);
+
+  function highlightCells() {
+    board.highlightCells(selectedCell);
+    updateBoard();
+  }
+
+  function updateBoard() {
+    const newBoard = board.getCopyBoard();
+    setBoard(newBoard);
   }
 
   return (
@@ -21,13 +41,18 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
         {board.cells.map((row, index) => (
           <React.Fragment key={index}>
             {row.map((cell) => (
-              <CellComponent click={click} cell={cell} key={cell.id} selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y} />
+              <CellComponent
+                click={click}
+                cell={cell}
+                key={cell.id}
+                selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
+              />
             ))}
           </React.Fragment>
         ))}
       </div>
     </div>
   );
-}; 
+};
 
 export default BoardComponent;

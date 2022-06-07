@@ -26,6 +26,22 @@ export class Board {
     }
   }
 
+  public highlightCells(selectedCell: Cell | null) {
+    for (let i = 0; i < this.cells.length; i++) { // Проходимся по всем ячейкам чтоб понять, куда фигура может ходить
+      const row = this.cells[i]
+      for (let j = 0; j < row.length; j++) { // Проходимся по всем ячейкам чтоб понять, куда фигура может ходить
+        const target = row[j]
+        target.available = !!selectedCell?.figure?.canMove(target) // true или false может ли фигура ходить
+      }
+    }
+  }
+
+  public getCopyBoard(): Board {
+    const newBoard = new Board()
+    newBoard.cells = this.cells
+    return newBoard
+  }
+
   public getCell(x: number, y: number) {
     return this.cells[y][x]
   }
