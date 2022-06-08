@@ -74,8 +74,6 @@ export class Cell {
     return true;
   }
 
-  //FIXME: ферзь способен перепрыгивать через фигуры по диагонали, что не предусмотрено правилами шахмат.
-
   setFigure(figure: Figure) {
     this.figure = figure;
     this.figure.cell = this;

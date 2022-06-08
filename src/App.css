@@ -20,6 +20,8 @@ body {
   height: calc(64px * 8);
   display: flex;
   flex-wrap: wrap;
+
+  user-select: none;
 }
 .cell {
   width: 64px;
@@ -32,6 +34,8 @@ body {
   width: 48px;
   height: 48px;
   position: relative;
+
+  pointer-events: none;
 }
 .black {
   background-color: #779556;
