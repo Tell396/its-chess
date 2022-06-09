@@ -1,15 +1,20 @@
 import { convertTypeAcquisitionFromJson } from 'typescript';
-import { Knight } from './figures/Knight';
+
 import { Cell } from './Cell';
 import { Colors } from './Colors'
-import { Bishop } from './figures/Bishop';
+import { Figure } from './figures/Figure';
+
 import { King } from './figures/King';
-import { Pawn } from './figures/Pawn';
 import { Queen } from './figures/Queen';
+import { Bishop } from './figures/Bishop';
+import { Knight } from './figures/Knight';
 import { Rook } from './figures/Rook';
+import { Pawn } from './figures/Pawn';
 
 export class Board {
   cells: Cell[][] = [];
+  lostBlackFigures: Figure[] = []
+  lostWhiteFigures: Figure[] = []
 
   public initCells() {
     for (let i = 0; i < 8; i++) {
@@ -39,6 +44,8 @@ export class Board {
   public getCopyBoard(): Board {
     const newBoard = new Board()
     newBoard.cells = this.cells
+    newBoard.lostWhiteFigures = this.lostWhiteFigures
+    newBoard.lostBlackFigures = this.lostBlackFigures
     return newBoard
   }
 

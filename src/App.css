@@ -3,11 +3,7 @@
   padding: 0;
 }
 
-body {
-  background: #2a2a2a;
-}
-
-.App {
+.app {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -20,7 +16,7 @@ body {
   height: calc(64px * 8);
   display: flex;
   flex-wrap: wrap;
-
+  
   user-select: none;
 }
 .cell {
@@ -34,8 +30,9 @@ body {
   width: 48px;
   height: 48px;
   position: relative;
+  
+    pointer-events: none;
 
-  pointer-events: none;
 }
 .black {
   background-color: #779556;
@@ -45,14 +42,13 @@ body {
 }
 
 .selected {
-  transition: all 200ms ease;
-  background-color: #b46558;
+  background-color: brown;
 }
 .available {
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background-color: #3ec73e;
+  background-color: #22c022;
 }
 
 .lost {

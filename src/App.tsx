@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import BoardComponent from './components/BoardComponent';
+import LostFigures from './components/LostFigures';
+import Timer from './components/Timer';
 
 import { Board } from './models/Board';
 import { Player } from './models/Player';
@@ -33,13 +35,27 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
+      <Timer
+        restart={restart}
+        currentPlayer={currentPlayer}
+      />
       <BoardComponent
         board={board}
         setBoard={setBoard}
         currentPlayer={currentPlayer}
         swapPlayer={swapPlayer}
       />
+      <div>
+        <LostFigures
+          title="Черные фигуры"
+          figures={board.lostBlackFigures}
+        />
+        <LostFigures
+          title="Белые фигуры"
+          figures={board.lostWhiteFigures}
+        />
+      </div>
     </div>
   );
 }
