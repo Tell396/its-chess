@@ -22,6 +22,14 @@ export class Cell {
     this.id = Math.random();
   }
 
+  isEnemy(target: Cell): boolean {
+    if (target.figure) {
+      return this.figure?.color !== target.figure.color;
+    }
+
+    return false
+  }
+
   isEmpty() {
     return this.figure === null;
   }
@@ -80,8 +88,8 @@ export class Cell {
   }
 
   moveFigure(target: Cell) {
-    if(this.figure && this.figure?.canMove(target)) {
-      this.figure.moveFigure(target)
+    if (this.figure && this.figure?.canMove(target)) {
+      this.figure.moveFigure(target);
       target.setFigure(this.figure);
       this.figure = null;
     }
