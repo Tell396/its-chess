@@ -11,6 +11,8 @@ export class King extends Figure {
     this.name = FigureNames.KING;
   }
 
+  //TODO: Реализовать логику движения короля
+
   canMove(target: Cell): boolean {
     if(!super.canMove(target))
       return false
